@@ -1,0 +1,115 @@
+/* Container styling */
+#endorsements .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px 20px 0;
+}
+
+/* Reduce spacing after endorsements section */
+#endorsements {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* Section heading */
+#endorsements .section-heading {
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+#endorsements hr.primary {
+    border-color: $theme-primary;
+    border-width: 3px;
+    max-width: 50px;
+    width: 50px;
+    margin: 0 auto;
+}
+
+/* Flex row for pairs */
+#endorsements .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    margin-bottom: 15px;
+}
+
+/* Remove bottom margin from last row */
+#endorsements .row:last-child {
+    margin-bottom: 0;
+}
+
+/* Columns: 50% width on md+, 100% on small */
+#endorsements .col-md-6,
+#endorsements .col-sm-12 {
+    box-sizing: border-box;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 2 per row on medium+ screens */
+@media (min-width: 768px) {
+    #endorsements .col-md-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+/* 1 per row on small screens */
+@media (max-width: 767.98px) {
+    #endorsements .col-sm-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+/* service-box fills height & stacks content */
+#endorsements .service-box {
+    // background: #f9f9f9;
+    padding: 20px;
+    border-radius: 6px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    // box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+/* Avatar styling */
+#endorsements .endorsement-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Headings and text */
+#endorsements .service-box h3 {
+    margin: 0 0 10px;
+}
+
+#endorsements .service-box p.text-muted {
+    color: #666;
+    flex-shrink: 0;
+}
+
+/* Center text */
+.text-center {
+    text-align: center;
+}
+
+#endorsements .row:first-child {
+    display: block;
+}
+
+
+// #endorsements .row.endorsements-grid {
+//   display: flex;
+//   flex-wrap: wrap;
+//   align-items: stretch;
+//   margin-bottom: 30px;
+// }

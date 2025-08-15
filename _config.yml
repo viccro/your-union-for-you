@@ -1,0 +1,10 @@
+# Site settings
+# remote_theme: creative-theme-jekyll
+title: Your Union for You
+email: your.union.for.you@gmail.com
+description: > # this means to ignore newlines until "baseurl:"
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "" # the base hostname & protocol for your site
+
+# Build settings
+markdown: kramdown

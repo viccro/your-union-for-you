@@ -1,0 +1,89 @@
+// #the-team {
+//   padding-top: 60px;
+//   padding-bottom: 60px;
+
+//   .row {
+//     margin-bottom: 40px; /* space between pairs */
+//     display: flex;
+//     flex-wrap: wrap;
+//     align-items: center;
+    
+//     &:last-child {
+//       margin-bottom: 0;
+//     }
+//   }
+
+//   .col-md-6,
+//   .col-sm-12 {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//   }
+
+//   img {
+//     max-height: 90%;
+//     max-width: 100%;
+//     object-fit: contain;
+//     margin: auto;
+//   }
+
+//   // Add some left padding on small screens so content isn't flush left
+//   @media (max-width: 760px) {
+//     .col-md-6,
+//     .col-sm-12 {
+//       padding-left: 15px;
+//       padding-right: 15px;
+//     }
+//   }
+// }
+
+#the-team {
+  padding-top: 60px;
+  padding-bottom: 60px;
+
+  .container-fluid {
+    padding-left: 15px;  // Bootstrap default gutter padding
+    padding-right: 15px;
+  }
+
+  .row {
+    margin-bottom: 40px; /* space between pairs */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .col-md-6,
+  .col-sm-12 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  img {
+    max-height: 90%;
+    max-width: 100%;
+    object-fit: contain;
+    margin: auto;
+  }
+
+  // Mobile: padding inside columns
+  @media (max-width: 767.98px) {
+    .col-sm-12 {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
+}
+
+  // Desktop and up: add left padding on columns to separate photos from left edge
+  @media (min-width: 768px) {
+    .col-md-6 {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
