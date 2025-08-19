@@ -268,6 +268,100 @@ p {
     }
 }
 
+// Union Vision - Clean centered text styling
+.union-vision-section {
+    text-align: center;
+    margin: 30px 0 0 0;
+}
+
+// Reduce spacing between vision and bio sections
+#unit-chair-vision {
+    padding-bottom: 20px !important;
+}
+
+#unit-chair-bio {
+    padding-top: 5px !important;
+}
+
+#vice-chair {
+    padding-top: 20px !important;
+}
+
+#vote {
+    padding-top: 20px !important;
+}
+
+.union-vision-text {
+    font-size: 1.1em;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto 20px auto;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+// Candidate sections - shared styling for all candidate sections
+#vice-chair .candidate-column,
+#secretary .candidate-column,
+#unit-chair-bio .candidate-column {
+    max-width: 900px !important;
+    width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+    float: none !important;
+    padding: 0 !important;
+    margin-top: -30px !important;
+    margin-bottom: 0 !important;
+}
+
+#vice-chair .service-box,
+#secretary .service-box,
+#unit-chair-bio .service-box {
+    max-width: none !important;
+    width: 100%;
+    margin: 20px 40px;
+    padding-right: 80px; // Add extra right margin to text content
+}
+
+// Text wrapping with fluid scaling margins
+@media (min-width: 768px) {
+
+    #vice-chair .vice-chair-image,
+    #secretary .secretary-image,
+    #unit-chair-bio .unit-chair-image {
+        float: left;
+        margin-right: calc(3vw + 40px); // Scales from ~60px to ~120px+ as screen grows
+        margin-bottom: 45px;
+        min-width: 360px; // Ensure images never get smaller than 360px
+        max-width: calc(250px + 5vw); // Scales from ~290px to ~350px+ as screen grows
+        width: calc(35% + 0.5vw); // Scales from ~38% to ~45%+ as screen grows
+        height: auto;
+    }
+
+    #vice-chair .service-box,
+    #secretary .service-box,
+    #unit-chair-bio .service-box {
+        overflow: visible; // Allow text to wrap around floated image
+    }
+}
+
+// Small screens - images stack vertically (no floating)
+@media (max-width: 767px) {
+
+    #vice-chair .vice-chair-image,
+    #secretary .secretary-image,
+    #unit-chair-bio .unit-chair-image {
+        float: none;
+        margin-right: 0;
+        margin-bottom: 20px;
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
 // Endorsements section
 #endorsements {
     padding-top: 0;
