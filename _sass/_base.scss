@@ -500,7 +500,7 @@ header {
     min-height: auto;
     @include background-cover;
     background-position: center;
-    background-image: url('../img/banner2.jpg');
+    background-image: url('../img/banner-1920.webp');
     text-align: center;
     color: white;
 
@@ -741,9 +741,20 @@ header {
     max-width: 120px !important;
 }
 
-#contact a {
+#contact .col-lg-12 a {
     display: block;
     text-align: center;
+}
+
+#contact .col-lg-8 a {
+    color: $theme-primary;
+    text-decoration: underline;
+    text-decoration-color: $theme-primary;
+    
+    &:hover {
+        color: darken($theme-primary, 15%);
+        text-decoration-color: darken($theme-primary, 15%);
+    }
 }
 
 // Extras

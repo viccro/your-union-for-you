@@ -1,5 +1,10 @@
-<section id="endorsements">
+{% assign endorsements = site.data.endorsements %}
+{% assign total_endorsements = endorsements.size %}
+{% assign desktop_pages = total_endorsements | divided_by: 3.0 | ceil %}
+
+<section id="endorsements-carousel">
     <div class="container">
+        <!-- Section Header -->
         <div class="row">
             <div class="col-12 text-center">
                 <hr class="primary">
@@ -7,40 +12,213 @@
             </div>
         </div>
 
-        <!-- Pair 1 -->
+        <!-- Carousel Container -->
         <div class="row">
-            <div class="col-md-6 col-sm-12 text-center">
-                <div class="service-box">
-                    <img src="img/candidates/placeholder-face.jpg" class="endorsement-avatar" alt="John Smith" />
-                    <h3>John Smith, Principal Engineer</h3>
-                    <p class="text-muted">They made this cool site even though they're not front-end devs! You should be really proud of them but also feel free to give feedback because this was very hard..</p>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-12 text-center">
-                <div class="service-box">
-                    <img src="img/candidates/placeholder-face.jpg" class="endorsement-avatar" alt="Ida Noh" />
-                    <h3>Ida Noh, Designer, The Athletic</h3>
-                    <p class="text-muted">Third base!</p>
-                </div>
-            </div>
-        </div>
+            <div class="col-lg-12 text-center">
 
-        <!-- Pair 2 -->
-        <div class="row">
-            <div class="col-md-6 col-sm-12 text-center">
-                <div class="service-box">
-                    <img src="img/candidates/placeholder-face.jpg" class="endorsement-avatar" alt="Spiders Georg" />
-                    <h3>Spiders Georg, Data Analyst</h3>
-                    <p class="text-muted">They promised me spiders!</p>
+                <!-- Desktop Carousel: 3 endorsements per page -->
+                <div id="carouselDesktop" class="carousel slide desktop-carousel">
+                    <!-- Dynamic Indicators -->
+                    <ol class="carousel-indicators">
+                        {% for i in (0..desktop_pages) limit:desktop_pages %}
+                        <li data-target="#carouselDesktop" data-slide-to="{{ i }}" {% if i == 0 %}class="active" {% endif %}></li>
+                        {% endfor %}
+                    </ol>
+
+                    <!-- Dynamic Slides -->
+                    <div class="carousel-inner">
+                        {% for endorsement_chunk in endorsements %}
+                        {% assign chunk_index = forloop.index0 %}
+                        {% assign page_number = chunk_index | divided_by: 3 %}
+                        {% assign position_in_page = chunk_index | modulo: 3 %}
+
+                        {% if position_in_page == 0 %}
+                        <!-- Start new page -->
+                        <div class="item {% if page_number == 0 %}active{% endif %}">
+                            <div class="row">
+                                {% endif %}
+
+                                <!-- Individual endorsement -->
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="endorsement-card text-center">
+                                        {% if endorsement_chunk.image and endorsement_chunk.image != "" %}
+                                        <img class="endorsement-image center-block" src="{{ endorsement_chunk.image }}" alt="{{ endorsement_chunk.name }}">
+                                        {% else %}
+                                        <div class="endorsement-icon-placeholder center-block">
+                                            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                                        </div>
+                                        {% endif %}
+                                        <blockquote class="endorsement-quote">
+                                            <p>"{{ endorsement_chunk.quote }}"</p>
+                                            <footer class="endorsement-author">- {{ endorsement_chunk.name }}</footer>
+                                        </blockquote>
+                                    </div>
+                                </div>
+
+                                {% if position_in_page == 2 or forloop.last %}
+                                <!-- End page -->
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    <!-- Navigation Controls -->
+                    <a class="carousel-control left" href="#carouselDesktop" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control right" href="#carouselDesktop" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
-            </div>
-            <div class="col-md-6 col-sm-12 text-center">
-                <div class="service-box">
-                    <img src="img/candidates/placeholder-face.jpg" class="endorsement-avatar" alt="Dewey, Cheetham, & Howe" />
-                    <h3>Dewey, Cheetham, & Howe</h3>
-                    <p class="text-muted">Don't code like my brother.</p>
+
+                <!-- Mobile Carousel: 1 endorsement per page -->
+                <div id="carouselMobile" class="carousel slide mobile-carousel">
+                    <!-- Dynamic Indicators -->
+                    <ol class="carousel-indicators">
+                        {% for endorsement in endorsements %}
+                        <li data-target="#carouselMobile" data-slide-to="{{ forloop.index0 }}" {% if forloop.first %}class="active" {% endif %}></li>
+                        {% endfor %}
+                    </ol>
+
+                    <!-- Dynamic Slides -->
+                    <div class="carousel-inner">
+                        {% for endorsement in endorsements %}
+                        <div class="item {% if forloop.first %}active{% endif %}">
+                            <div class="endorsement-card text-center">
+                                {% if endorsement.image and endorsement.image != "" %}
+                                <img class="endorsement-image center-block" src="{{ endorsement.image }}" alt="{{ endorsement.name }}">
+                                {% else %}
+                                <div class="endorsement-icon-placeholder center-block">
+                                    <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                                </div>
+                                {% endif %}
+                                <blockquote class="endorsement-quote">
+                                    <p>"{{ endorsement.quote }}"</p>
+                                    <footer class="endorsement-author">- {{ endorsement.name }}</footer>
+                                </blockquote>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Navigation Controls -->
+                    <a class="carousel-control left" href="#carouselMobile" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control right" href="#carouselMobile" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
+
             </div>
         </div>
     </div>
+
+    <!-- Dynamic Random Start Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dynamic random slides based on data
+            var totalEndorsements = {
+                {
+                    total_endorsements
+                }
+            };
+            var desktopPages = {
+                {
+                    desktop_pages
+                }
+            };
+            var desktopRandomSlide = Math.floor(Math.random() * desktopPages);
+            var mobileRandomSlide = Math.floor(Math.random() * totalEndorsements);
+
+            // Desktop carousel setup
+            var desktopCarousel = document.getElementById('carouselDesktop');
+            if (desktopCarousel) {
+                var desktopItems = desktopCarousel.querySelectorAll('.carousel-inner .item');
+                var desktopIndicators = desktopCarousel.querySelectorAll('.carousel-indicators li');
+
+                desktopItems.forEach(function(item) {
+                    item.classList.remove('active');
+                });
+                desktopIndicators.forEach(function(indicator) {
+                    indicator.classList.remove('active');
+                });
+
+                if (desktopItems[desktopRandomSlide]) {
+                    desktopItems[desktopRandomSlide].classList.add('active');
+                }
+                if (desktopIndicators[desktopRandomSlide]) {
+                    desktopIndicators[desktopRandomSlide].classList.add('active');
+                }
+            }
+
+            // Mobile carousel setup
+            var mobileCarousel = document.getElementById('carouselMobile');
+            if (mobileCarousel) {
+                var mobileItems = mobileCarousel.querySelectorAll('.carousel-inner .item');
+                var mobileIndicators = mobileCarousel.querySelectorAll('.carousel-indicators li');
+
+                mobileItems.forEach(function(item) {
+                    item.classList.remove('active');
+                });
+                mobileIndicators.forEach(function(indicator) {
+                    indicator.classList.remove('active');
+                });
+
+                if (mobileItems[mobileRandomSlide]) {
+                    mobileItems[mobileRandomSlide].classList.add('active');
+                }
+                if (mobileIndicators[mobileRandomSlide]) {
+                    mobileIndicators[mobileRandomSlide].classList.add('active');
+                }
+            }
+
+            // Add touch swipe support for mobile carousel
+            var mobileCarousel = document.getElementById('carouselMobile');
+            if (mobileCarousel && 'ontouchstart' in window) {
+                var startX, startY, endX, endY;
+                var minSwipeDistance = 50; // Minimum distance for a swipe
+
+                mobileCarousel.addEventListener('touchstart', function(e) {
+                    startX = e.touches[0].clientX;
+                    startY = e.touches[0].clientY;
+                }, {
+                    passive: true
+                });
+
+                mobileCarousel.addEventListener('touchmove', function(e) {
+                    // Prevent default scrolling behavior during swipe
+                    if (Math.abs(e.touches[0].clientX - startX) > Math.abs(e.touches[0].clientY - startY)) {
+                        e.preventDefault();
+                    }
+                });
+
+                mobileCarousel.addEventListener('touchend', function(e) {
+                    endX = e.changedTouches[0].clientX;
+                    endY = e.changedTouches[0].clientY;
+
+                    var deltaX = endX - startX;
+                    var deltaY = endY - startY;
+
+                    // Check if horizontal swipe is dominant and meets minimum distance
+                    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > minSwipeDistance) {
+                        if (deltaX > 0) {
+                            // Swipe right - go to previous slide
+                            $('#carouselMobile').carousel('prev');
+                        } else {
+                            // Swipe left - go to next slide
+                            $('#carouselMobile').carousel('next');
+                        }
+                    }
+                }, {
+                    passive: false
+                });
+            }
+        });
+    </script>
 </section>

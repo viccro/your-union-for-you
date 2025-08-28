@@ -106,6 +106,132 @@
     display: block;
 }
 
+/* Endorsement Faces Carousel */
+#endorsementFacesCarousel {
+    max-width: 300px;
+    margin: 30px auto;
+    position: relative;
+    overflow: visible;
+    padding: 0 100px;
+}
+
+/* Smooth horizontal sliding transition */
+#endorsements .carousel-inner {
+    overflow: hidden;
+    position: relative;
+}
+
+/* Hide all carousel items by default */
+#endorsements .carousel-item {
+    display: none;
+    text-align: center;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    min-height: 240px;
+    transition: transform 0.6s ease-in-out;
+}
+
+/* Show only the active carousel item */
+#endorsements .carousel-item.active {
+    display: flex;
+}
+
+/* Face images */
+#endorsements .endorsement-face {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto;
+    border: 4px solid rgba($theme-primary, 0.2);
+    @include transition-all;
+}
+
+/* Black arrows - bigger and more spaced out */
+#endorsements .carousel-control-prev,
+#endorsements .carousel-control-next {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 3px solid #000000;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.9;
+
+    &:hover {
+        background: rgba(255, 255, 255, 1);
+        opacity: 1;
+        transform: translateY(-50%) scale(1.1);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+}
+
+#endorsements .carousel-control-prev {
+    left: 0px;
+}
+
+#endorsements .carousel-control-next {
+    right: 0px;
+}
+
+/* Hide default icons and use text arrows instead */
+#endorsements .carousel-control-prev-icon,
+#endorsements .carousel-control-next-icon {
+    display: none;
+}
+
+/* Clear text arrows */
+#endorsements .carousel-control-prev::after {
+    content: '‹';
+    font-size: 40px;
+    font-weight: bold;
+    color: #000000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1;
+}
+
+#endorsements .carousel-control-next::after {
+    content: '›';
+    font-size: 40px;
+    font-weight: bold;
+    color: #000000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    #endorsementFacesCarousel {
+        max-width: 250px;
+    }
+
+    #endorsements .endorsement-face {
+        width: 150px;
+        height: 150px;
+    }
+
+    #endorsements .carousel-control-prev {
+        left: -60px;
+    }
+
+    #endorsements .carousel-control-next {
+        right: -60px;
+    }
+
+    #endorsements .carousel-control-prev,
+    #endorsements .carousel-control-next {
+        width: 40px;
+        height: 40px;
+    }
+}
 
 // #endorsements .row.endorsements-grid {
 //   display: flex;
