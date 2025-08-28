@@ -1,0 +1,32 @@
+<div id="event-banner" class="event-announcement">
+    <div class="event-banner-content">
+        <p class="event-text">🗳️ <strong>Come here</strong> 🗳️</p>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const banner = document.getElementById('event-banner');
+        const header = document.querySelector('header');
+
+        if (banner && header) {
+            function updateBannerColor() {
+                const headerHeight = header.offsetHeight;
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+                // Add 'scrolled' class when user scrolls past 50% of header height
+                if (scrollTop > headerHeight * 0.5) {
+                    banner.classList.add('scrolled');
+                } else {
+                    banner.classList.remove('scrolled');
+                }
+            }
+
+            // Update on scroll
+            window.addEventListener('scroll', updateBannerColor);
+
+            // Initial check
+            updateBannerColor();
+        }
+    });
+</script>
