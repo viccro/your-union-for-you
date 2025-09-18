@@ -704,6 +704,18 @@ header {
     color: $theme-primary;
 }
 
+strong {
+    color: $theme-primary;
+}
+
+// Keep strong tags white on dark backgrounds
+.bg-primary strong,
+.bg-dark strong,
+.text-faded strong {
+    color: white;
+}
+
+
 .no-gutter>[class*='col-'] {
     padding-right: 0;
     padding-left: 0;
@@ -773,6 +785,8 @@ header {
         display: flex;
         align-items: center;
         justify-content: center;
+        text-decoration: none;
+        color: inherit;
     }
     
     .event-text {
@@ -845,6 +859,70 @@ body {
         max-width: none;
         width: 100%;
         padding: 10px 0;
+    }
+}
+
+#contact {
+    scroll-margin-top: 80px; // Offset for smooth scroll to stop above the heading
+    
+    .contact-intro {
+        margin-bottom: 30px;
+    }
+    
+    .event-details {
+        margin-bottom: 25px;
+        
+        .event-date {
+            color: $theme-dark;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            text-align: center;
+            
+            h4 {
+                margin: 0;
+                font-weight: bold;
+                font-size: 20px;
+            }
+        }
+    }
+    
+    .location-options {
+        margin-bottom: 25px;
+        
+        .options-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .location-option {
+            flex: 1;
+            min-width: 250px;
+            background-color: rgba($theme-primary, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid $theme-primary;
+            text-align: center;
+            
+            h5 {
+                margin-top: 0;
+                color: $theme-primary;
+                font-weight: bold;
+                font-size: 18px;
+            }
+            
+            p {
+                margin-bottom: 0;
+                color: $theme-dark;
+            }
+            
+            a {
+                color: $theme-primary;
+                font-weight: bold;
+            }
+        }
     }
 }
 

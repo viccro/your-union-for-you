@@ -10,8 +10,15 @@
     // jQuery for page scrolling feature - requires jQuery Easing plugin
     $('a.page-scroll').bind('click', function(event) {
         var $anchor = $(this);
+        var offset = 50; // default offset
+
+        // Use larger offset for contact section
+        if ($anchor.attr('href') === '#contact') {
+            offset = 80;
+        }
+
         $('html, body').stop().animate({
-            scrollTop: ($($anchor.attr('href')).offset().top - 50)
+            scrollTop: ($($anchor.attr('href')).offset().top - offset)
         }, 1250, 'easeInOutExpo');
         event.preventDefault();
     });
