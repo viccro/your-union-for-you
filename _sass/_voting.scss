@@ -1,0 +1,111 @@
+// Voting section styles
+#vote {
+    .voting-intro {
+        margin-bottom: 40px;
+    }
+    
+    .voting-button-section {
+        margin-top: 40px;
+    }
+}
+
+// Timeline styles for voting section
+.events {
+    // Needed for positioning the line.
+    position: relative;
+    // Add some space.
+    display: flex;
+    margin-block: 0.5em;
+    margin-left: 20px;  // Space before the timeline line
+    flex-direction: column;
+    row-gap: 1em;
+}
+
+// The line in the middle.
+.events::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background: rgba(white, 0.3);
+}
+
+.event {
+    // Layout content and marker using flexbox.
+    display: flex;
+    // Align marker vertically.
+    align-items: baseline;
+}
+
+.event .marker {
+    // Adjust marker to center on the line.
+    position: relative;
+    left: -5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: $theme-primary;
+    flex-shrink: 0;
+}
+
+.event .content {
+    padding-left: 1em;
+    text-align: left;  // Ensure left alignment on mobile
+    
+    time {
+        font-weight: 900;
+        font-size: 16px;
+        color: $theme-primary;
+    }
+    
+    p {
+        margin: 0;
+        color: rgba(white, 0.9);
+        font-weight: normal;
+    }
+}
+
+@media (min-width: 700px) {
+    // Remove left margin on desktop
+    .events {
+        margin-left: 0;
+    }
+    
+    // Place the line in the middle.
+    .events::before {
+        left: 50%;
+    }
+    
+    // Layout the marker after the content.
+    .event .marker {
+        order: 1;
+    }
+    
+    .event .content {
+        // Make the content take 50% space so the marker
+        // will be placed at 50% (on top of the line).
+        width: 50%;
+        // Event is to the left, align text towards the line.
+        text-align: right;
+        // Avoid overlap with the marker.
+        padding-inline: 1em;
+    }
+    
+    // For alternate events, move to the right side.
+    .event:nth-child(even) {
+        // Layout the content and marker from right to left.
+        flex-direction: row-reverse;
+
+        // Now align text to the left.
+        .content {
+            text-align: left;
+        }
+        
+        // We used to offset the marker from the left with -5px,
+        // now we need to do it from the other side.
+        .marker {
+            left: 5px;
+        }
+    }
+}
