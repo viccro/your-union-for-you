@@ -1,0 +1,36 @@
+# Ruby/Jekyll specific files
+.bundle/
+vendor/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+_site/
+
+# Ruby version files
+.ruby-version
+.ruby-gemset
+
+# Bundler (uncomment next line if building a gem library)
+# Gemfile.lock
+
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*~
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Log files
