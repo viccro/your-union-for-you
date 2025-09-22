@@ -34,6 +34,34 @@
         $('.navbar-toggle:visible').click();
     });
 
+    // Close mobile dropdown when clicking outside (narrow screens only)
+    $(document).on('click', function(event) {
+        // Only apply this behavior on narrow screens
+        if ($(window).width() <= 767) {
+            var $navbar = $('.navbar-collapse');
+            var $navbarToggle = $('.navbar-toggle');
+
+            // Check if dropdown is open and click is outside navbar
+            if ($navbar.hasClass('in') &&
+                !$navbar.is(event.target) &&
+                $navbar.has(event.target).length === 0 &&
+                !$navbarToggle.is(event.target) &&
+                $navbarToggle.has(event.target).length === 0) {
+
+                // Save current scroll position
+                var scrollTop = $(window).scrollTop();
+
+                // Close the dropdown
+                $navbar.collapse('hide');
+
+                // Restore scroll position after a brief delay to ensure DOM update
+                setTimeout(function() {
+                    $(window).scrollTop(scrollTop);
+                }, 10);
+            }
+        }
+    });
+
     // Fit Text Plugin for Main Header
     $("h1").fitText(
         1.2, {

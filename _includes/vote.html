@@ -9,16 +9,39 @@
                     <div class="event">
                         <div class="marker"></div>
                         <div class="content">
-                            <time>September 15</time>
-                            <p>Ballots mailed to members – voting begins!</p>
+                            <div class="timeline-header-left" data-toggle="collapse" data-target="#timeline-1" aria-expanded="false" aria-controls="timeline-1">
+                                <time>September 15</time>
+                                <p><span class="collapse-indicator-left">▼</span>Ballots mailed to members – <span class="no-wrap">voting begins! <span class="collapse-indicator-right">▼</span></span></p>
+                            </div>
+                            <div class="collapse timeline-details" id="timeline-1">
+                                <div class="timeline-detail-content">
+                                    <p>All unit members who were in good standing as of 11:59 PM on August 31 are eligible to vote in the unit election.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="event">
                         <div class="marker"></div>
                         <div class="content">
-                            <time>September 22</time>
-                            <p>Request a duplicate ballot if you haven't gotten one yet!</p>
+                            <div class="timeline-header" data-toggle="collapse" data-target="#timeline-2" aria-expanded="false" aria-controls="timeline-2">
+                                <time>September 22</time>
+                                <p>Request a duplicate ballot if you haven't gotten <span class="no-wrap">one yet! <span class="collapse-indicator">▼</span></span></p>
+                            </div>
+                            <div class="collapse timeline-details" id="timeline-2">
+                                <div class="timeline-detail-content">
+                                    <p>Email <a href="mailto:helpdesk@voteges.com?subject=Replacement%20ballot%20request%20-%20NYT%20Tech%20Guild%20unit%20council%20election&body=Hello%2C%0A%0AI%20am%20a%20member%20of%20the%20NYT%20Tech%20Guild%2C%20and%20I%20have%20not%20yet%20received%20a%20ballot%20for%20the%20Unit%20Council%20election.%20%0A%0AFull%20Name%3A%20%0A%0AMember%20ID%20number%3A%0A%0ACurrent%20mailing%20address%3A%0A%0ADaytime%20phone%20number%3A%0A%0A%0AThank%20you!">helpdesk@voteges.com</a> or call <strong>877-455-9367</strong> with the following information: </p>
+                                    <ol>
+                                        <li>it's for the NYT Tech Guild</li>
+                                        <li>your full name</li>
+                                        <li>your member ID number</li>
+                                        <li>your current mailing address</li>
+                                        <li>your daytime phone number</li>
+                                    </ol>
+                                    <p>You can find your member ID by logging into <a href="https://nyguild.org/login">nyguild.org/login</a> and selecting "Membership Card" from the top of the page.</p>
+                                    <p>Request a replacement ballot <strong>as soon as possible</strong> to ensure there is enough time for a ballot to be sent to you and back.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -46,7 +69,6 @@
                         </div>
                     </div>
 
-
                     <div class="event">
                         <div class="marker"></div>
                         <div class="content">
@@ -56,6 +78,42 @@
                     </div>
 
                 </div>
+
+                <!-- Timeline Accordion JavaScript -->
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        // Add event listeners for accordion toggles (September 15 and 22 items)
+                        var timelineHeaders = document.querySelectorAll('.timeline-header, .timeline-header-left');
+
+                        timelineHeaders.forEach(function(header) {
+                            header.addEventListener('click', function() {
+                                var target = document.querySelector(this.getAttribute('data-target'));
+                                var isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+                                // Toggle aria-expanded attribute
+                                this.setAttribute('aria-expanded', !isExpanded);
+                            });
+                        });
+
+                        // Handle bootstrap collapse events for both accordions
+                        var collapseElements = document.querySelectorAll('.timeline-details');
+                        collapseElements.forEach(function(collapse) {
+                            $(collapse).on('shown.bs.collapse', function() {
+                                var trigger = document.querySelector('[data-target="#' + this.id + '"]');
+                                if (trigger) {
+                                    trigger.setAttribute('aria-expanded', 'true');
+                                }
+                            });
+
+                            $(collapse).on('hidden.bs.collapse', function() {
+                                var trigger = document.querySelector('[data-target="#' + this.id + '"]');
+                                if (trigger) {
+                                    trigger.setAttribute('aria-expanded', 'false');
+                                }
+                            });
+                        });
+                    });
+                </script>
 
                 <hr class="primary">
 
