@@ -817,6 +817,17 @@ strong {
     }
 }
 
+// Fix mobile nav dropdown being hidden behind event banner on narrow screens only
+@media (max-width: 767px) {
+    .navbar-collapse {
+        margin-top: 60px !important; // Push dropdown below the 60px banner
+        background-color: white;
+        border: 1px solid rgba(178, 34, 34, 0.2);
+        border-top: none;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+}
+
 // Remove extra body padding - let header start right after nav
 body {
     padding-top: 0 !important;

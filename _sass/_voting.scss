@@ -66,10 +66,140 @@
     }
 }
 
+// Shared styling for accordion headers
+.timeline-header,
+.timeline-header-left {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    &:hover {
+        opacity: 0.8;
+    }
+    
+    time {
+        display: block;
+        font-weight: 900;
+        font-size: 16px;
+        color: $theme-primary;
+    }
+    
+    p {
+        margin: 0;
+        color: rgba(white, 0.9);
+        font-weight: normal;
+    }
+}
+
+// Specific overrides for left header
+.timeline-header-left {
+    position: relative;
+    
+    p {
+        display: block;
+    }
+}
+
+// Specific overrides for regular header
+.timeline-header p {
+    display: inline;
+}
+
+// Shared triangle indicator styling
+.collapse-indicator,
+.collapse-indicator-left,
+.collapse-indicator-right {
+    font-size: 18px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+    display: inline-block;
+    color: $theme-primary;
+}
+
+// Specific spacing for each triangle type
+.collapse-indicator {
+    margin-left: 0;
+}
+
+.collapse-indicator-left {
+    margin-right: 4px;
+}
+
+.collapse-indicator-right {
+    display: none; // Hidden by default, shown on narrow screens
+    margin-left: 4px;
+}
+
+.no-wrap {
+    white-space: nowrap;
+}
+
+// Rotate all triangles when accordion is expanded
+.timeline-header[aria-expanded="true"] .collapse-indicator,
+.timeline-header-left[aria-expanded="true"] .collapse-indicator-left,
+.timeline-header-left[aria-expanded="true"] .collapse-indicator-right {
+    transform: rotate(180deg);
+}
+
+.timeline-details {
+    margin-top: 10px;
+    
+    .timeline-detail-content {
+        padding: 10px 0;
+        border-top: 1px solid rgba(white, 0.2);
+        
+        p {
+            margin: 0;
+            color: rgba(white, 0.7);
+            font-size: 14px;
+            font-style: italic;
+        }
+        
+        ol {
+            margin: 10px 0;
+            padding-left: 20px;
+            color: rgba(white, 0.7);
+            font-size: 14px;
+            font-style: italic;
+            
+            li {
+                margin: 4px 0;
+                padding-left: 10px;
+            }
+        }
+        
+        strong {
+            color: $theme-primary;
+        }
+    }
+}
+
+// On narrow screens, move triangles to the right side of text
+@media (max-width: 699px) {
+    .timeline-header-left p,
+    .timeline-header p {
+        display: inline;
+    }
+    
+    .collapse-indicator-left {
+        display: none;
+    }
+    
+    .collapse-indicator-right {
+        display: inline-block;
+    }
+}
+
 @media (min-width: 700px) {
-    // Remove left margin on desktop
     .events {
         margin-left: 0;
+    }
+    
+    .timeline-header p {
+        display: inline;
+    }
+    
+    .collapse-indicator-right {
+        display: none;
     }
     
     // Place the line in the middle.
